@@ -1,5 +1,6 @@
 use chrono::{DateTime, Utc};
 
+#[derive(Debug)]
 pub struct Vet<'v> {
     id: String,
     vet_type: &'v VetType,
@@ -15,17 +16,17 @@ pub struct Vet<'v> {
     address: String,
     complement: String,
 }
-
+#[derive(Debug)]
 pub enum VetType {
     Public,
     Particular,
 }
-
+#[derive(Debug)]
 pub enum VetTributes {
     PF,
     PJ,
 }
-
+#[derive(Debug)]
 pub enum VetArea {
     General,
     Cancer,
