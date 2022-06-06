@@ -62,9 +62,9 @@ fn main() {
 
     let kimba: Pet = Pet::new(
         String::from("439bc904724023"),
-    &PetSize::BigSize,
-    &PetType::Dog,
-  &PetHealthState::Healthy);
+        &PetSize::BigSize,
+        &PetType::Dog,
+        &PetHealthState::Healthy);
 
    let pet_data: Pet  = kimba.get();
 
