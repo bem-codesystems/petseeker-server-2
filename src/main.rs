@@ -1,11 +1,10 @@
 use petseeker_server_2::{pet,vet};
 
 fn main() {
-    let kimba: pet::Pet = pet::Pet::new(
-        String::from("439bc904724023"),
-        &pet::PetSize::BigSize,
-        &pet::PetType::Dog,
-        &pet::PetHealthState::Healthy);
+    let kimba: pet::Pet = pet::Pet::new(String::from("439bc904724023"),
+                                        &pet::PetSize::BigSize,
+                                        &pet::PetType::Dog,
+                                        &pet::PetHealthState::Healthy);
 
     let veterinary: vet::Vet = vet::Vet::new(String::from("439bc904724023"),
                                              &vet::VetType::Particular,
