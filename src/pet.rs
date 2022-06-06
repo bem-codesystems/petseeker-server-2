@@ -32,7 +32,7 @@ pub struct Pet<'p> {
     pub picture_list: Vec<String>
 }
 
-impl <'p>Pet<'p> {
+impl<'p> Pet<'p> {
     pub fn new(id: String, pet_size: &'p PetSize, pet_type: &'p PetType, health_state: &'p PetHealthState) -> Pet<'p> {
         Pet {
             id,
