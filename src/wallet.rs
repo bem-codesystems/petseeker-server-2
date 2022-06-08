@@ -1,3 +1,4 @@
+use chrono::{Date, DateTime, Utc};
 use crate::user::User;
 
 pub enum WalletType {
@@ -20,6 +21,7 @@ pub struct Transaction<'t> {
     amount: String,
     validated: bool,
     objective: &'t WalletObjective,
+    created_at: DateTime<Utc>
 }
 
 pub struct Wallet<'w> {
@@ -28,6 +30,22 @@ pub struct Wallet<'w> {
     addresses: Vec<String>,
     belongs_to: &'w User,
     balance: f64,
-    transactions: Vec<Transaction<'w>>
+    transactions: Vec<Transaction<'w>>,
+    created_at: DateTime<Utc>
+}
+
+impl<'w> Wallet<'w> {
+    pub fn new(id: String, wallet_type: &'w WalletType,belongs_to: &'w User, balance: f64) -> Wallet<'w> {
+        Wallet {
+            id,
+            wallet_type,
+            addresses: vec![],
+            belongs_to,
+            balance,
+            transactions: vec![],
+            created_at: Utc::now(),
+        }
+    }
+
 }
 
