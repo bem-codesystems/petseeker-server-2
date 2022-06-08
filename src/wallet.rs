@@ -47,5 +47,16 @@ impl<'w> Wallet<'w> {
         }
     }
 
+    pub fn get(&self) -> Wallet<'w> {
+        Wallet {
+            id: String::from(&self.id),
+            wallet_type: self.wallet_type,
+            addresses: self.addresses.to_vec(),
+            belongs_to: self.belongs_to,
+            balance: self.balance,
+            transactions: self.transactions.to_vec(),
+            created_at: self.created_at,
+        }
+    }
 }
 
