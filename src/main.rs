@@ -1,4 +1,5 @@
-use petseeker_server_2::{pet,vet,user};
+use petseeker_server_2::{pet,vet,user,wallet};
+use petseeker_server_2::wallet::WalletType;
 
 fn main() {
     let kimba: pet::Pet = pet::Pet::new(String::from("439bc904724023"),
@@ -24,11 +25,19 @@ fn main() {
                                                true,
                                                String::from("7569vc890213cv26rxctxx93246v98"));
 
+
+   let wallet_one: wallet::Wallet = wallet::Wallet::new(String::from("3486xv946v2364v29vx6937x46387h3x49"),
+                                                        &WalletType::Paper,
+                                                        &new_user,
+                                                        1818.10);
+
    let pet_data: pet::Pet  = kimba.get();
    let vet_data: vet::Vet = veterinary.get();
    let user_data: user::User = new_user.get();
+   let wallet_data: wallet::Wallet = wallet_one.get();
 
    println!("{:#?}",pet_data);
    println!("{:#?}",vet_data);
    println!("{:#?}",user_data);
+   println!("{:#?}",wallet_data);
 }

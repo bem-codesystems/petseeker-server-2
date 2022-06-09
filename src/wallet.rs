@@ -1,17 +1,18 @@
 use chrono::{Date, DateTime, Utc};
 use crate::user::User;
 
+#[derive(Debug)]
 pub enum WalletType {
     FileSystem,
     Paper,
     Hardware,
 }
-
+#[derive(Debug)]
 pub enum WalletObjective {
     Social,
     Payment,
 }
-
+#[derive(Debug)]
 pub struct Transaction<'t> {
     id: String,
     previous_hash: String,
@@ -23,7 +24,7 @@ pub struct Transaction<'t> {
     objective: &'t WalletObjective,
     created_at: DateTime<Utc>
 }
-
+#[derive(Debug)]
 pub struct Wallet<'w> {
     id: String,
     wallet_type: &'w WalletType,
