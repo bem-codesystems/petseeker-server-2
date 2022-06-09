@@ -1,3 +1,5 @@
+use chrono::{DateTime, Utc};
+
 #[derive(Debug)]
 pub enum CamType {
     Normal,
@@ -23,4 +25,8 @@ pub struct Drone<'d> {
     source: &'d DroneSource,
     battery_state: &'d DroneBatteryState,
     charge_level: u8,
+    manufacturer: String,
+    model: String,
+    created_at: DateTime<Utc>,
+    updated_at: DateTime<Utc>,
 }
