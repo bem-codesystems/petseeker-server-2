@@ -12,7 +12,7 @@ pub enum WalletObjective {
     Social,
     Payment,
 }
-#[derive(Debug)]
+#[derive(Debug,)]
 pub struct Transaction<'t> {
     id: String,
     previous_hash: String,

@@ -1,5 +1,19 @@
 use chrono::{DateTime, Utc};
 
+pub trait Info {
+    fn healthcheck(&self) -> String;
+    fn get_id(&self) -> String;
+}
+
+impl Info for Drone {
+    fn healthcheck(&self) -> String {
+        format!("Charge level: {}, Battery: {:#?}",self.charge_level,self.battery_state)
+    }
+    fn get_id(&self) -> String {
+        format!("Drone ID: {}",self.id)
+    }
+}
+
 #[derive(Debug)]
 pub enum CamType {
     Normal,
