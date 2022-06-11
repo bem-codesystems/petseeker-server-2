@@ -31,7 +31,7 @@ pub struct Wallet<'w> {
     pub addresses: Vec<String>,
     pub belongs_to: &'w User,
     pub balance: f64,
-    pub transactions: Vec<&'w Transaction<'w>>,
+    pub transactions: Vec<&'w mut Transaction<'w>>,
     pub created_at: DateTime<Utc>
 }
 
@@ -58,6 +58,10 @@ impl<'w> Wallet<'w> {
             transactions: self.transactions.to_vec(),
             created_at: self.created_at,
         }
+    }
+
+    pub fn insert_transaction(&mut self, transaction: &mut Transaction) -> () {
+        self.transactions.push(transaction)
     }
 }
 

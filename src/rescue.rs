@@ -2,7 +2,6 @@ use chrono::{DateTime, Utc};
 use crate::pet::Pet;
 use crate::user::User;
 use crate::vet::Vet;
-use crate::wallet;
 use crate::wallet::Wallet;
 
 #[derive(Debug)]
@@ -77,7 +76,7 @@ impl<'l> Rescue<'l> {
             has_success: self.has_success,
             risk: self.risk,
             need_hospital: self.need_hospital,
-            rescue_wallet: vec![],
+            rescue_wallet: vec![&'l ],
             inform_police: self.inform_police,
             created_at: Utc::now(),
             updated_at: Utc::now(),
