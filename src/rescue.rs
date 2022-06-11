@@ -60,4 +60,26 @@ impl<'l> Rescue<'l> {
             updated_at: Utc::now(),
         }
     }
+
+    pub fn get(&self) -> Rescue {
+        Rescue {
+            id: String::from(&self.id),
+            pet: self.pet,
+            user: self.user,
+            vet: self.vet,
+            address: String::from(&self.address),
+            complement: String::from(&self.complement),
+            number: String::from(&self.number),
+            place_type: self.place_type,
+            rescue_lat: String::from(&self.rescue_lat),
+            rescue_lng: String::from(&self.rescue_lng),
+            has_success: self.has_success,
+            risk: self.risk,
+            need_hospital: self.need_hospital,
+            rescue_wallet: vec![&Wallet],
+            inform_police: self.inform_police,
+            created_at: Utc::now(),
+            updated_at: Utc::now(),
+        }
+    }
 }
