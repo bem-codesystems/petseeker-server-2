@@ -5,7 +5,7 @@ pub trait Info {
     fn get_id(&self) -> String;
 }
 
-impl Info for Drone {
+impl Info for Drone<'_> {
     fn healthcheck(&self) -> String {
         format!("Charge level: {}, Battery: {:#?}",self.charge_level,self.battery_state)
     }

@@ -2,6 +2,7 @@ use chrono::{DateTime, Utc};
 use crate::pet::Pet;
 use crate::user::User;
 use crate::vet::Vet;
+use crate::wallet;
 use crate::wallet::Wallet;
 
 #[derive(Debug)]
@@ -17,12 +18,12 @@ pub enum RescueRiskLevel {
 }
 #[derive(Debug)]
 pub struct Rescue<'l> {
-    id: String,
-    pet: &'l Pet<'l>,
-    user: &'l User,
-    vet: &'l Vet<'l>,
-    address: String,
-    complement: String,
+    pub id: String,
+    pub pet: &'l Pet<'l>,
+    pub user: &'l User,
+    pub vet: &'l Vet<'l>,
+    pub address: String,
+    pub complement: String,
     number: String,
     place_type: &'l RescuePlaceType,
     rescue_lat: String,
@@ -76,7 +77,7 @@ impl<'l> Rescue<'l> {
             has_success: self.has_success,
             risk: self.risk,
             need_hospital: self.need_hospital,
-            rescue_wallet: vec![&Wallet],
+            rescue_wallet: vec![],
             inform_police: self.inform_police,
             created_at: Utc::now(),
             updated_at: Utc::now(),
@@ -90,7 +91,7 @@ pub trait Notify {
     fn get_participant_info(&self) -> String;
 }
 
-impl Notify for Rescue {
+impl Notify for Rescue<'_> {
     fn notify(&self) -> String {
         format!("New rescue {}, on {} latitude and {} longitude.\nRisk level:{:#?}.",self.id,self.rescue_lat,self.rescue_lng,self.risk)
     }

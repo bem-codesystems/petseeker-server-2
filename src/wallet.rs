@@ -1,4 +1,4 @@
-use chrono::{Date, DateTime, Utc};
+use chrono::{ DateTime, Utc};
 use crate::user::User;
 
 #[derive(Debug)]
@@ -26,13 +26,13 @@ pub struct Transaction<'t> {
 }
 #[derive(Debug)]
 pub struct Wallet<'w> {
-    id: String,
-    wallet_type: &'w WalletType,
-    addresses: Vec<String>,
-    belongs_to: &'w User,
-    balance: f64,
-    transactions: Vec<Transaction<'w>>,
-    created_at: DateTime<Utc>
+    pub(crate) id: String,
+    pub wallet_type: &'w WalletType,
+    pub addresses: Vec<String>,
+    pub belongs_to: &'w User,
+    pub balance: f64,
+    pub transactions: Vec<&'w Transaction<'w>>,
+    pub created_at: DateTime<Utc>
 }
 
 impl<'w> Wallet<'w> {
