@@ -4,17 +4,17 @@ use crate::user::User;
 use crate::vet::Vet;
 use crate::wallet::Wallet;
 
+#[derive(Debug)]
 pub enum RescuePlaceType {
     Open,
     Closed,
 }
-
+#[derive(Debug)]
 pub enum RescueRiskLevel {
     Low,
     Medium,
     High,
 }
-
 #[derive(Debug)]
 pub struct Rescue<'l> {
     id: String,
@@ -81,5 +81,23 @@ impl<'l> Rescue<'l> {
             created_at: Utc::now(),
             updated_at: Utc::now(),
         }
+    }
+}
+
+pub trait Notify {
+    fn notify(&self) -> String;
+    fn ask_refund(&self) -> String;
+    fn get_participant_info(&self) -> String;
+}
+
+impl Notify for Rescue {
+    fn notify(&self) -> String {
+        format!("New rescue {}, on {} latitude and {} longitude.\nRisk level:{:#?}.",self.id,self.rescue_lat,self.rescue_lng,self.risk)
+    }
+    fn ask_refund(&self) -> String {
+        format!("Id:{},\nWallet:{:#?}\n",self.id,self.rescue_wallet)
+    }
+    fn get_participant_info(&self) -> String {
+        format!("User:{:#?},Veterinary:{:#?},Pet:{:#?}",self.user,self.vet,self.pet)
     }
 }
