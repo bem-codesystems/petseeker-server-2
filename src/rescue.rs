@@ -1,3 +1,4 @@
+use chrono::{DateTime, Utc};
 use crate::pet::Pet;
 use crate::user::User;
 use crate::vet::Vet;
@@ -31,6 +32,8 @@ pub struct Rescue<'l> {
     need_hospital: bool,
     rescue_wallet: Vec<&'l Wallet<'l>>,
     inform_police: bool,
+    created_at: DateTime<Utc>,
+    updated_at: DateTime<Utc>,
 }
 
 impl<'l> Rescue<'l> {
@@ -52,7 +55,9 @@ impl<'l> Rescue<'l> {
             risk,
             need_hospital,
             rescue_wallet,
-            inform_police
+            inform_police,
+            created_at: Utc::now(),
+            updated_at: Utc::now(),
         }
     }
 }
