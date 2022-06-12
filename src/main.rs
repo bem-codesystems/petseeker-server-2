@@ -1,8 +1,8 @@
 use chrono::Utc;
 use petseeker_server_2::{pet, vet, user, wallet, drone, rescue};
 use petseeker_server_2::drone::{CamType, DroneBatteryState, DroneSource};
-use petseeker_server_2::rescue::{Notify, Rescue, RescuePlaceType, RescueRiskLevel};
-use petseeker_server_2::wallet::{Transaction, WalletObjective, WalletType};
+use petseeker_server_2::rescue::{Notify, RescuePlaceType, RescueRiskLevel};
+use petseeker_server_2::wallet::{Transaction, WalletType, adjust_finances, Wallet, check_finances};
 use petseeker_server_2::Finances;
 
 fn main() {
@@ -75,9 +75,10 @@ fn main() {
     println!("{:#?}",wallet_data);
     println!("{:#?}",transaction_list);
 
-    let fee:String = wallet_one.total_fee();
+    let _fee:String = wallet_one.total_fee();
+    let initial_fee = check_finances(&wallet_one);
 
-    println!("{}",fee);
+    println!("{:?}",initial_fee);
 
    // println!("{:#?}",pet_data);
    // println!("{:#?}",vet_data);
