@@ -1,5 +1,6 @@
 use chrono::{ DateTime, Utc};
 use crate::user::User;
+use crate::Finances;
 
 #[derive(Debug)]
 pub enum WalletType {
@@ -63,6 +64,12 @@ impl<'w> Wallet<'w> {
 
     pub fn insert_transaction(&mut self, transaction: &'w mut Transaction<'w>) -> () {
         self.transactions.push(transaction)
+    }
+}
+
+impl<'w> Finances for Wallet<'w> {
+    fn request_fee(&self) -> f64 {
+        1562.12
     }
 }
 

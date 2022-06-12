@@ -3,6 +3,7 @@ use petseeker_server_2::{pet, vet, user, wallet, drone, rescue};
 use petseeker_server_2::drone::{CamType, DroneBatteryState, DroneSource};
 use petseeker_server_2::rescue::{Notify, Rescue, RescuePlaceType, RescueRiskLevel};
 use petseeker_server_2::wallet::{Transaction, WalletObjective, WalletType};
+use petseeker_server_2::Finances;
 
 fn main() {
     let kimba: pet::Pet = pet::Pet::new(String::from("439bc904724023"),
@@ -74,6 +75,9 @@ fn main() {
     println!("{:#?}",wallet_data);
     println!("{:#?}",transaction_list);
 
+    let fee:String = wallet_one.total_fee();
+
+    println!("{}",fee);
 
    // println!("{:#?}",pet_data);
    // println!("{:#?}",vet_data);
