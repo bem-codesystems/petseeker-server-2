@@ -1,6 +1,6 @@
 use chrono::{ DateTime, Utc};
 use crate::user::User;
-use crate::Finances;
+use crate::{Finances, Info};
 
 #[derive(Debug)]
 pub enum WalletType {
@@ -73,11 +73,17 @@ impl<'w> Finances for Wallet<'w> {
     }
 }
 
-pub fn adjust_finances(item: &impl Finances) -> f64 {
+impl Info for Wallet<'_> {
+    fn info(&self) -> String {
+        format!("Wallet balance: {}",self.balance)
+    }
+}
+
+pub fn adjust_finances(item: &(impl Finances + Info)) -> f64 {
     item.initial_fee()
 }
 
-pub fn check_finances<T: Finances>(item: &T) -> f64 {
+pub fn check_finances<T: Finances + Info>(item: &T) -> f64 {
     if item.initial_fee() > 0.00 {
         item.initial_fee() + item.request_fee()
     } else {

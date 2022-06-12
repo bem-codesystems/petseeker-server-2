@@ -3,7 +3,7 @@ use petseeker_server_2::{pet, vet, user, wallet, drone, rescue};
 use petseeker_server_2::drone::{CamType, DroneBatteryState, DroneSource};
 use petseeker_server_2::rescue::{Notify, RescuePlaceType, RescueRiskLevel};
 use petseeker_server_2::wallet::{Transaction, WalletType, adjust_finances, Wallet, check_finances};
-use petseeker_server_2::Finances;
+use petseeker_server_2::{Finances,Info};
 
 fn main() {
     let kimba: pet::Pet = pet::Pet::new(String::from("439bc904724023"),

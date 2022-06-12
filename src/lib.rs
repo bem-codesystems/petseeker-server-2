@@ -14,3 +14,10 @@ pub trait Finances {
         format!("The current amount is {}", self.initial_fee() + self.request_fee())
     }
 }
+
+pub trait Info {
+    fn info(&self) -> String;
+    fn join(&self, amount: f64) -> String {
+        format!("Joining the chain with the amount of: {}",amount)
+    }
+}
