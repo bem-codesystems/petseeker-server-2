@@ -12,7 +12,7 @@ pub enum WalletObjective {
     Social,
     Payment,
 }
-#[derive(Debug,)]
+#[derive(Debug,Clone)]
 pub struct Transaction<'t> {
     id: String,
     previous_hash: String,
@@ -24,6 +24,7 @@ pub struct Transaction<'t> {
     objective: &'t WalletObjective,
     created_at: DateTime<Utc>
 }
+
 #[derive(Debug)]
 pub struct Wallet<'w> {
     pub(crate) id: String,
@@ -31,7 +32,7 @@ pub struct Wallet<'w> {
     pub addresses: Vec<String>,
     pub belongs_to: &'w User,
     pub balance: f64,
-    pub transactions: Vec<&'w mut Transaction<'w>>,
+    pub transactions: Vec<&'w Transaction<'w>>,
     pub created_at: DateTime<Utc>
 }
 
@@ -60,7 +61,7 @@ impl<'w> Wallet<'w> {
         }
     }
 
-    pub fn insert_transaction(&mut self, transaction: &mut Transaction) -> () {
+    pub fn insert_transaction(&mut self, transaction: &'w mut Transaction<'w>) -> () {
         self.transactions.push(transaction)
     }
 }

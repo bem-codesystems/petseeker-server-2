@@ -39,7 +39,7 @@ pub struct Rescue<'l> {
 impl<'l> Rescue<'l> {
     pub fn new(id: String,pet: &'l Pet, user: &'l User, vet: &'l Vet, address: String, complement: String, number: String,
                place_type: &'l RescuePlaceType, rescue_lat: String, rescue_lng: String, has_success: bool, risk: &'l RescueRiskLevel,
-               need_hospital: bool, rescue_wallet: Vec<&'l Wallet>,inform_police: bool) -> Rescue<'l> {
+               need_hospital: bool, rescue_wallet: Vec<&'l Wallet<'l>>,inform_police: bool) -> Rescue<'l> {
         Rescue {
             id,
             pet,
@@ -61,7 +61,7 @@ impl<'l> Rescue<'l> {
         }
     }
 
-    pub fn get(&self) -> Rescue {
+    pub fn get(&self) -> Rescue<'l> {
         Rescue {
             id: String::from(&self.id),
             pet: self.pet,
@@ -76,7 +76,7 @@ impl<'l> Rescue<'l> {
             has_success: self.has_success,
             risk: self.risk,
             need_hospital: self.need_hospital,
-            rescue_wallet: vec![&'l ],
+            rescue_wallet: self.rescue_wallet.to_vec(),
             inform_police: self.inform_police,
             created_at: Utc::now(),
             updated_at: Utc::now(),
