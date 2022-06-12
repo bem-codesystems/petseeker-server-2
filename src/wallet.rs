@@ -14,15 +14,15 @@ pub enum WalletObjective {
 }
 #[derive(Debug,Clone)]
 pub struct Transaction<'t> {
-    id: String,
-    previous_hash: String,
-    hash: String,
-    from: String,
-    to: String,
-    amount: String,
-    validated: bool,
-    objective: &'t WalletObjective,
-    created_at: DateTime<Utc>
+    pub id: String,
+    pub previous_hash: String,
+    pub hash: String,
+    pub from: String,
+    pub to: String,
+    pub amount: f64,
+    pub validated: bool,
+    pub objective: &'t WalletObjective,
+    pub created_at: DateTime<Utc>
 }
 
 #[derive(Debug)]

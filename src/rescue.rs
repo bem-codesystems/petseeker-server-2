@@ -86,16 +86,16 @@ impl<'l> Rescue<'l> {
 
 pub trait Notify {
     fn notify(&self) -> String;
-    fn ask_refund(&self) -> String;
+    fn ask_refund(&self) -> ();
     fn get_participant_info(&self) -> String;
 }
 
 impl Notify for Rescue<'_> {
     fn notify(&self) -> String {
-        format!("New rescue {}, on {} latitude and {} longitude.\nRisk level:{:#?}.",self.id,self.rescue_lat,self.rescue_lng,self.risk)
+        format!("New rescue {}, on {} latitude and {} longitude. Risk level:{:#?}.",self.id,self.rescue_lat,self.rescue_lng,self.risk)
     }
-    fn ask_refund(&self) -> String {
-        format!("Id:{},\nWallet:{:#?}\n",self.id,self.rescue_wallet)
+    fn ask_refund(&self) -> () {
+        println!("Id:{},\nWallet:{:#?}\n",self.id,self.rescue_wallet)
     }
     fn get_participant_info(&self) -> String {
         format!("User:{:#?},Veterinary:{:#?},Pet:{:#?}",self.user,self.vet,self.pet)

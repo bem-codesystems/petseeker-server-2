@@ -1,7 +1,8 @@
-use petseeker_server_2::{pet,vet,user,wallet,drone,rescue};
+use chrono::Utc;
+use petseeker_server_2::{pet, vet, user, wallet, drone, rescue};
 use petseeker_server_2::drone::{CamType, DroneBatteryState, DroneSource};
-use petseeker_server_2::rescue::{RescuePlaceType, RescueRiskLevel};
-use petseeker_server_2::wallet::WalletType;
+use petseeker_server_2::rescue::{Notify, Rescue, RescuePlaceType, RescueRiskLevel};
+use petseeker_server_2::wallet::{Transaction, WalletObjective, WalletType};
 
 fn main() {
     let kimba: pet::Pet = pet::Pet::new(String::from("439bc904724023"),
@@ -28,7 +29,19 @@ fn main() {
                                                String::from("7569vc890213cv26rxctxx93246v98"));
 
 
-   let wallet_one: wallet::Wallet = wallet::Wallet::new(String::from("3486xv946v2364v29vx6937x46387h3x49"),
+    let mut transaction = wallet::Transaction {
+        id: String::from("34cb2836936v3946"),
+        previous_hash: String::from("3i2b90278027rv36c367c5v7628736908173bn1027xv8373c23z28753c783x5"),
+        hash: String::from("289262v83vruyfhdsjkldfkj983v7233"),
+        from: String::from("Chuck Norris"),
+        to: String::from("John Malone"),
+        amount: 135762.12,
+        validated: true,
+        objective: &wallet::WalletObjective::Payment,
+        created_at: Utc::now()
+    };
+
+   let mut wallet_one: wallet::Wallet = wallet::Wallet::new(String::from("3486xv946v2364v29vx6937x46387h3x49"),
                                                         &WalletType::Paper,
                                                         &new_user,
                                                         1818.10);
@@ -42,18 +55,24 @@ fn main() {
                                                 String::from("Mavics"),
                                                 String::from("DJI"));
 
-    let rescue: rescue::Rescue = rescue::Rescue::new(String::from("239074v38c65cv6839821x790937b92c7v0cx6219"),&kimba,&new_user,&veterinary,
+   let rescue: rescue::Rescue = rescue::Rescue::new(String::from("239074v38c65cv6839821x790937b92c7v0cx6219"),&kimba,&new_user,&veterinary,
     String::from("Robles St,1011"),String::from("ap 27"),String::from("100"),&RescuePlaceType::Closed,String::from("-10983.00"),
     String::from("98723.00"),false,&RescueRiskLevel::Medium,true,vec![&wallet_one],true);
 
-   let pet_data: pet::Pet  = kimba.get();
-   let vet_data: vet::Vet = veterinary.get();
-   let user_data: user::User = new_user.get();
-   // let wallet_data: wallet::Wallet = wallet_one.get();
-   let drone_data: drone::Drone = drone.get();
-    let rescue_data: rescue::Rescue = rescue.get();
+   let _make_notification: String = rescue.notify();
 
-    println!("{:#?}",rescue_data);
+   let _refund: () = rescue.ask_refund();
+
+   let _pet_data: pet::Pet  = kimba.get();
+   let _vet_data: vet::Vet = veterinary.get();
+   let _user_data: user::User = new_user.get();
+   let wallet_data: wallet::Wallet = wallet_one.get();
+   let _drone_data: drone::Drone = drone.get();
+   let _rescue_data: rescue::Rescue = rescue.get();
+
+    let transaction_list: Vec<&Transaction> = vec![&transaction];
+    println!("{:#?}",wallet_data);
+    println!("{:#?}",transaction_list);
 
 
    // println!("{:#?}",pet_data);
