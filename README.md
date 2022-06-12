@@ -12,4 +12,4 @@ Add the desired ```crate: "^semver"``` in the TOML file and after fetch it from 
 with ```cargo build```
 
 ### How To Run Tests
-cargo run
+```cargo run```
