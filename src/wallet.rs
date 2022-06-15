@@ -87,7 +87,7 @@ pub fn check_finances<T: Finances + Info>(item: &T) -> f64 {
     if item.initial_fee() > 0.00 {
         item.initial_fee() + item.request_fee()
     } else {
-        item.request_fee() * 2.00
+        item.request_fee() * 2.00 + 2.00
     }
 }
 
