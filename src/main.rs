@@ -4,8 +4,63 @@ use petseeker_server_2::drone::{CamType, DroneBatteryState, DroneSource};
 use petseeker_server_2::rescue::{Notify, RescuePlaceType, RescueRiskLevel};
 use petseeker_server_2::wallet::{Transaction, WalletType, adjust_finances, Wallet, check_finances};
 use petseeker_server_2::{Finances,Info};
+use std::io::{ErrorKind,Read, Write};
+use std::net::TcpListener;
+use std::sync::mpsc;
+use std::thread;
+use std::time::Duration;
+
+const LOCAL_ADDR: &str = "127.0.0.1:5000";
+
+const MSG_SIZE: usize = 32;
+
 
 fn main() {
+
+    let server = TcpListener::bind(LOCAL_ADDR).expect("Unable to connect to bind address.");
+    server.set_nonblocking(true).expect("Unable to set unblocking thread.");
+
+    let mut client_list: Vec<_> = vec![];
+
+    let (sender,receiver) = mpsc::channel::<String>();
+
+    loop {
+        if let Ok((mut socket,addr)) = server.accept() {
+            println!("Client:{}, connected.",addr);
+            let s = sender.clone();
+            client_list.push(socket.try_clone().expect("Could not clone client."));
+
+            thread::spawn(move || loop {
+                let mut buffer: Vec<u8> = vec![0;MSG_SIZE];
+                match socket.read_exact(&mut buffer) {
+                    Ok(_) => {
+                        let message = buffer.into_iter().take_while(|&x| x != 0).collect::<Vec<_>>();
+                        let message = String::from_utf8(message).expect("");
+
+                        println!("{}: {:#?}",addr,message);
+                        receiver.send(message).expect("");
+                    },
+                    Err(ref err) if err.kind() == ErrorKind.WouldBlock => (),
+                    Err(_) => {
+                        println!("There was an error.Closing connection to: {}",addr);
+                        break;
+                    }
+                }
+
+                pause_request();
+            })
+        }
+        if let Ok(message) = receiver.try_recv() {
+            client_list = client_list.into_iter().filter_map(|mut client| {
+                let mut buffer = message.clone().into_bytes();
+                buffer.resize(MSG_SIZE,0);
+                client.write_all(&buffer).map(|_| client).ok()
+            }).collect::<Vec<_>>();
+        }
+        pause_request();
+    }
+
+
     let kimba: pet::Pet = pet::Pet::new(String::from("439bc904724023"),
                                         &pet::PetSize::BigSize,
                                         &pet::PetType::Dog,
@@ -85,4 +140,11 @@ fn main() {
    // println!("{:#?}",user_data);
    // println!("{:#?}",wallet_data);
    // println!("{:#?}",drone_data);
+
+
+
+}
+
+fn pause_request() {
+    thread::sleep(Duration::from_millis(200));
 }
