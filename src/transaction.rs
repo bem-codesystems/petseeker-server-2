@@ -1,10 +1,12 @@
+#[allow(unused_variables,dead_code)]
 use chrono::{DateTime, Utc};
 
+#[derive(Debug)]
 pub enum FinancialType {
     Payment,
     Donation,
 }
-
+#[derive(Debug)]
 pub enum Origin {
     InternalWallet,
     ExternalWallet,

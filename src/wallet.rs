@@ -1,3 +1,4 @@
+#[allow(unused_variables,dead_code)]
 use chrono::{ DateTime, Utc};
 use crate::user::User;
 use crate::{Finances, Info};

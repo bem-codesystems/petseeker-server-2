@@ -1,5 +1,5 @@
+#[allow(unused_variables,dead_code)]
 use chrono::{DateTime, Utc};
-
 pub trait Info {
     fn healthcheck(&self) -> String;
     fn get_id(&self) -> String;
