@@ -5,6 +5,7 @@ pub mod user;
 pub mod drone;
 pub mod rescue;
 pub mod transaction;
+pub mod info;
 
 pub trait Finances {
     fn initial_fee(&self) -> f64 {

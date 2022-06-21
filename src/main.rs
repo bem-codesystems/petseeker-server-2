@@ -21,6 +21,54 @@ const MSG_SIZE: usize = 32;
 
 fn main() {
 
+    // let name: &str = "Este eh um nome";
+    //
+    // let mut name_pointer: String = String::from("Esse eh um nome de verdade.");
+    //
+    // println!("Conteudo stack:{0}",name);
+    //
+    // println!("Conteudo heap:{}",name_pointer);
+    //
+    // let byte_array_string: &[u8] = name_pointer.as_bytes();
+    //
+    // println!("{:#?}",byte_array_string);
+    //
+    // let byte_array_list = vec![
+    //     69,
+    //     115,
+    //     115,
+    //     101,
+    //     32,
+    //     101,
+    //     104,
+    //     32,
+    //     117,
+    //     109,
+    //     32,
+    //     110,
+    //     111,
+    //     109,
+    //     101,
+    //     32,
+    //     100,
+    //     101,
+    //     32,
+    //     118,
+    //     101,
+    //     114,
+    //     100,
+    //     97,
+    //     100,
+    //     101,
+    //     46,
+    // ];
+    //
+    // let string_from_bytes = String::from_utf8(byte_array_list);
+    //
+    // println!("{:?}",string_from_bytes);
+
+
+
     let server = TcpListener::bind(LOCAL_ADDR).expect("Unable to connect to bind address.");
     server.set_nonblocking(true).expect("Unable to set unblocking thread.");
 
@@ -64,90 +112,90 @@ fn main() {
     };
 
 
-   //  let _kimba: pet::Pet = pet::Pet::new(String::from("439bc904724023"),
-   //                                      &pet::PetSize::BigSize,
-   //                                      &pet::PetType::Dog,
-   //                                      &pet::PetHealthState::Healthy);
-   //
-   //  let _veterinary: vet::Vet = vet::Vet::new(String::from("439bc904724023"),
-   //                                           &vet::VetType::Particular,
-   //                                           &vet::VetTributes::PF,
-   //                                           String::from("John Connor"),
-   //                                           String::from("connor.john@terminator.vet"),
-   //                                           String::from("853873s1937183g7g4897246f3871s93g2639127"),
-   //                                           &vet::VetArea::Surgery,
-   //                                           String::from("New York"),
-   //                                           String::from("New York City"),
-   //                                           String::from("War St. 299"),
-   //                                           String::from("100"));
-   //
-   //  let _new_user: user::User = user::User::new(String::from("68435347384232t4yur23"),
-   //                                             String::from("Mr Schneebly"),
-   //                                             String::from("schneebly@schoolofrock.net"),
-   //                                             true,
-   //                                             String::from("7569vc890213cv26rxctxx93246v98"));
-   //
-   //
-   //  let mut _transaction = wallet::Transaction {
-   //      id: String::from("34cb2836936v3946"),
-   //      previous_hash: String::from("3i2b90278027rv36c367c5v7628736908173bn1027xv8373c23z28753c783x5"),
-   //      hash: String::from("289262v83vruyfhdsjkldfkj983v7233"),
-   //      from: String::from("Chuck Norris"),
-   //      to: String::from("John Malone"),
-   //      amount: 135762.12,
-   //      validated: true,
-   //      objective: &wallet::WalletObjective::Payment,
-   //      created_at: Utc::now()
-   //  };
-   //
-   // let mut _wallet_one: wallet::Wallet = wallet::Wallet::new(String::from("3486xv946v2364v29vx6937x46387h3x49"),
-   //                                                      &WalletType::Paper,
-   //                                                      &new_user,
-   //                                                      1818.10);
-   //
-   //  let _drone: drone::Drone = drone::Drone::new(String::from("859cv83463h4793246vc9363829476v2c4324982"),
-   //                                              true,
-   //                                              &CamType::Normal,
-   //                                              &DroneSource::Own,
-   //                                              &DroneBatteryState::Full,
-   //                                              88,
-   //                                              String::from("Mavics"),
-   //                                              String::from("DJI"));
-   //
-   // let _rescue: rescue::Rescue = rescue::Rescue::new(String::from("239074v38c65cv6839821x790937b92c7v0cx6219"),&kimba,&new_user,&veterinary,
-   //  String::from("Robles St,1011"),String::from("ap 27"),String::from("100"),&RescuePlaceType::Closed,String::from("-10983.00"),
-   //  String::from("98723.00"),false,&RescueRiskLevel::Medium,true,vec![&wallet_one],true);
-   //
-   // let _make_notification: String = rescue.notify();
-   //
-   // let _refund: () = rescue.ask_refund();
-   //
-   // let _pet_data: pet::Pet  = kimba.get();
-   // let _vet_data: vet::Vet = veterinary.get();
-   // let _user_data: user::User = new_user.get();
-   // let _wallet_data: wallet::Wallet = wallet_one.get();
-   // let _drone_data: drone::Drone = drone.get();
-   // let _rescue_data: rescue::Rescue = rescue.get();
-   //
-   //  let _transaction_list: Vec<&Transaction> = vec![&transaction];
-   //  println!("{:#?}",wallet_data);
-   //  println!("{:#?}",transaction_list);
-   //
-   //  let _fee:String = wallet_one.total_fee();
-   //  let _initial_fee = check_finances(&wallet_one);
-   //
-   //  println!("{:?}",initial_fee);
+    let kimba: pet::Pet = pet::Pet::new(String::from("439bc904724023"),
+                                        &pet::PetSize::BigSize,
+                                        &pet::PetType::Dog,
+                                        &pet::PetHealthState::Healthy);
 
-   // println!("{:#?}",pet_data);
-   // println!("{:#?}",vet_data);
-   // println!("{:#?}",user_data);
-   // println!("{:#?}",wallet_data);
-   // println!("{:#?}",drone_data);
+    let veterinary: vet::Vet = vet::Vet::new(String::from("439bc904724023"),
+                                             &vet::VetType::Particular,
+                                             &vet::VetTributes::PF,
+                                             String::from("John Connor"),
+                                             String::from("connor.john@terminator.vet"),
+                                             String::from("853873s1937183g7g4897246f3871s93g2639127"),
+                                             &vet::VetArea::Surgery,
+                                             String::from("New York"),
+                                             String::from("New York City"),
+                                             String::from("War St. 299"),
+                                             String::from("100"));
+
+    let new_user: user::User = user::User::new(String::from("68435347384232t4yur23"),
+                                               String::from("Mr Schneebly"),
+                                               String::from("schneebly@schoolofrock.net"),
+                                               true,
+                                               String::from("7569vc890213cv26rxctxx93246v98"));
+
+
+    let mut transaction = wallet::Transaction {
+        id: String::from("34cb2836936v3946"),
+        previous_hash: String::from("3i2b90278027rv36c367c5v7628736908173bn1027xv8373c23z28753c783x5"),
+        hash: String::from("289262v83vruyfhdsjkldfkj983v7233"),
+        from: String::from("Chuck Norris"),
+        to: String::from("John Malone"),
+        amount: 135762.12,
+        validated: true,
+        objective: &wallet::WalletObjective::Payment,
+        created_at: Utc::now()
+    };
+
+   let mut wallet_one: wallet::Wallet = wallet::Wallet::new(String::from("3486xv946v2364v29vx6937x46387h3x49"),
+                                                        &WalletType::Paper,
+                                                        &new_user,
+                                                        1818.10);
+
+    let drone: drone::Drone = drone::Drone::new(String::from("859cv83463h4793246vc9363829476v2c4324982"),
+                                                true,
+                                                &CamType::Normal,
+                                                &DroneSource::Own,
+                                                &DroneBatteryState::Full,
+                                                88,
+                                                String::from("Mavics"),
+                                                String::from("DJI"));
+
+   let rescue: rescue::Rescue = rescue::Rescue::new(String::from("239074v38c65cv6839821x790937b92c7v0cx6219"),&kimba,&new_user,&veterinary,
+    String::from("Robles St,1011"),String::from("ap 27"),String::from("100"),&RescuePlaceType::Closed,String::from("-10983.00"),
+    String::from("98723.00"),false,&RescueRiskLevel::Medium,true,vec![&wallet_one],true);
+
+   let make_notification: String = rescue.notify();
+
+   let refund: () = rescue.ask_refund();
+
+   let pet_data: pet::Pet  = kimba.get();
+   let vet_data: vet::Vet = veterinary.get();
+   let user_data: user::User = new_user.get();
+   let wallet_data: wallet::Wallet = wallet_one.get();
+   let drone_data: drone::Drone = drone.get();
+   let rescue_data: rescue::Rescue = rescue.get();
+
+    let transaction_list: Vec<&Transaction> = vec![&transaction];
+    println!("{:#?}",wallet_data);
+    println!("{:#?}",transaction_list);
+
+    let fee:String = wallet_one.total_fee();
+    let initial_fee = check_finances(&wallet_one);
+
+    println!("{:?}",initial_fee);
+
+   println!("{:#?}",pet_data);
+   println!("{:#?}",vet_data);
+   println!("{:#?}",user_data);
+   println!("{:#?}",wallet_data);
+   println!("{:#?}",drone_data);
 
 
 
 }
 
-fn pause_request() {
-    thread::sleep(Duration::from_millis(200));
-}
+// fn pause_request() {
+//     thread::sleep(Duration::from_millis(200));
+// }
